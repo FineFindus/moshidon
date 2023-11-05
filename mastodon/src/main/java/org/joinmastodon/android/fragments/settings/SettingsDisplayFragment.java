@@ -1,6 +1,9 @@
 package org.joinmastodon.android.fragments.settings;
 
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Build;
@@ -299,5 +302,69 @@ public class SettingsDisplayFragment extends BaseSettingsFragment<Void>{
 	public void onViewCreated(View view, Bundle savedInstanceState){
 		super.onViewCreated(view, savedInstanceState);
 		((FragmentStackActivity)getActivity()).invalidateSystemBarColors(this);
+	}
+
+	enum AppIcon {
+		DEFAULT(".RoutingActivity", R.drawable.ic_launcher_foreground);
+
+		public final String componentName;
+		public final int icon;
+
+		AppIcon(String componentName, int icon) {
+			this.componentName= componentName;
+			this.icon = icon;
+		}
+
+		ComponentName getComponentName(Context context) {
+			return new ComponentName(context.getApplicationContext(), context.getPackageName() + componentName);
+		}
+
+		void setAppIcon(Context context) {
+			PackageManager packageManager = context.getPackageManager();
+
+			packageManager.setComponentEnabledSetting(this.getComponentName(context), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+			// disable previous icon
+			AppIcon previousIcon = getCurrentAppIcon(context);
+			packageManager.setComponentEnabledSetting(previousIcon.getComponentName(context), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+			// save selection
+//			GlobalUserPreferences.appIcon = this.icon;
+//			GlobalUserPreferences.save();
+
+			for (AppIcon appIcon : AppIcon.values()) {
+				if (appIcon != this && appIcon != previousIcon) {
+					packageManager.setComponentEnabledSetting(
+							appIcon.getComponentName(context),
+							PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+							PackageManager.DONT_KILL_APP
+					);
+				}
+			}
+		}
+
+		AppIcon getCurrentAppIcon(Context context) {
+			AppIcon activeIcon = null;
+
+			for (AppIcon preset : AppIcon.values()) {
+				ComponentName componentName = preset.getComponentName(context);
+				PackageManager packageManager = context.getPackageManager();
+				int componentEnabledSetting = packageManager.getComponentEnabledSetting(componentName);
+
+				if (preset == AppIcon.DEFAULT && componentEnabledSetting == PackageManager.COMPONENT_ENABLED_STATE_DEFAULT) {
+					return preset;
+				}
+
+				if (componentEnabledSetting == PackageManager.COMPONENT_ENABLED_STATE_ENABLED) {
+					activeIcon = preset;
+					break;
+				}
+			}
+
+			if (activeIcon == null) {
+				AppIcon.DEFAULT.setAppIcon(context);
+				return AppIcon.DEFAULT;
+			} else {
+				return activeIcon;
+			}
+		}
 	}
 }

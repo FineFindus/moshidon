@@ -98,6 +98,25 @@
 			</intent-filter>
 		</receiver>
 
+
+		<activity-alias android:name=".RoutingActivity"
+			android:targetActivity=".MainActivity"
+			android:exported="true">
+
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+				<category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+			</intent-filter>
+
+			<meta-data android:name="com.sec.minimode.icon.portrait.normal"
+				android:resource="@mipmap/ic_launcher" />
+			<meta-data android:name="com.sec.minimode.icon.landscape.normal"
+				android:resource="@mipmap/ic_launcher" />
+
+		</activity-alias>
+
+
 	</application>
 
 </manifest>

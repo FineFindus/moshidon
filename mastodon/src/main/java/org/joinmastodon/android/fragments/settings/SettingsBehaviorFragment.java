@@ -49,7 +49,8 @@ public class SettingsBehaviorFragment extends BaseSettingsFragment<Void> impleme
 
 		List<ListItem<Void>> items = new ArrayList<>(List.of(
 				languageItem=new ListItem<>(getString(R.string.default_post_language), postLanguage!=null ? postLanguage.getDisplayName(getContext()) : null, R.drawable.ic_fluent_local_language_24_regular, this::onDefaultLanguageClick),
-				altTextItem=new CheckableListItem<>(R.string.settings_alt_text_reminders, 0, CheckableListItem.Style.SWITCH, GlobalUserPreferences.altTextReminders, R.drawable.ic_fluent_image_alt_text_24_regular, i->toggleCheckableItem(altTextItem)),
+				// removes the setting to disable the reminders for adding alt-text
+				// altTextItem=new CheckableListItem<>(R.string.settings_alt_text_reminders, 0, CheckableListItem.Style.SWITCH, GlobalUserPreferences.altTextReminders, R.drawable.ic_fluent_image_alt_text_24_regular, i->toggleCheckableItem(altTextItem)),
 				showPostsWithoutAltItem=new CheckableListItem<>(R.string.mo_settings_show_posts_without_alt, R.string.mo_settings_show_posts_without_alt_summary, CheckableListItem.Style.SWITCH, GlobalUserPreferences.showPostsWithoutAlt, R.drawable.ic_fluent_eye_tracking_on_24_regular, i->toggleCheckableItem(showPostsWithoutAltItem)),
 				playGifsItem=new CheckableListItem<>(R.string.settings_gif, R.string.mo_setting_play_gif_summary, CheckableListItem.Style.SWITCH, GlobalUserPreferences.playGifs, R.drawable.ic_fluent_gif_24_regular, i->toggleCheckableItem(playGifsItem)),
 				overlayMediaItem=new CheckableListItem<>(R.string.sk_settings_continues_playback, R.string.sk_settings_continues_playback_summary, CheckableListItem.Style.SWITCH, GlobalUserPreferences.overlayMedia, R.drawable.ic_fluent_play_circle_hint_24_regular, i->toggleCheckableItem(overlayMediaItem)),

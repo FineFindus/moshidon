@@ -6,7 +6,7 @@
 	android:orientation="horizontal"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:paddingHorizontal="16dp"
+	android:paddingStart="16dp"
 	android:layout_marginBottom="-4dp">
 
 	<TextView
@@ -48,5 +48,31 @@
 		android:drawablePadding="6dp"
 		android:singleLine="true"
 		android:ellipsize="middle"/>
+
+	<TextView
+		android:id="@+id/time_separator"
+		android:visibility="visible"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="6dp"
+		android:paddingTop="16dp"
+		android:paddingHorizontal="1dp"
+		android:textAppearance="@style/m3_title_small"
+		android:textColor="?colorM3OnSurface"
+		android:gravity="center_horizontal"
+		android:importantForAccessibility="no"
+		android:includeFontPadding="false"
+		android:text="@string/sk_separator" />
+
+	<TextView
+		android:id="@+id/boosting_timestamp"
+		android:visibility="visible"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:paddingTop="16dp"
+		android:textAppearance="@style/m3_title_small"
+		android:textColor="?colorM3OnSurface"
+		android:singleLine="true"
+		android:ellipsize="none"/>
 
 </org.joinmastodon.android.ui.views.HeaderSubtitleLinearLayout>

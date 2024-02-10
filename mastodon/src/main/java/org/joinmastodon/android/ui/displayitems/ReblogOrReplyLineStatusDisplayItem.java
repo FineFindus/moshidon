@@ -113,14 +113,16 @@ public class ReblogOrReplyLineStatusDisplayItem extends StatusDisplayItem{
 	}
 
 	public static class Holder extends StatusDisplayItem.Holder<ReblogOrReplyLineStatusDisplayItem> implements ImageLoaderViewHolder{
-		private final TextView text, extraText;
-		private final View separator;
+		private final TextView text, extraText, boostingTimestamp;
+		private final View separator, timeSeparator;
 
 		public Holder(Activity activity, ViewGroup parent){
 			super(activity, R.layout.display_item_reblog_or_reply_line, parent);
 			text=findViewById(R.id.text);
 			extraText=findViewById(R.id.extra_text);
 			separator=findViewById(R.id.separator);
+			boostingTimestamp=findViewById(R.id.boosting_timestamp);
+			timeSeparator=findViewById(R.id.time_separator);
 		}
 
 		private void bindLine(ReblogOrReplyLineStatusDisplayItem item, TextView text) {
@@ -144,11 +146,14 @@ public class ReblogOrReplyLineStatusDisplayItem extends StatusDisplayItem{
 			if(Build.VERSION.SDK_INT<Build.VERSION_CODES.N)
 				UiUtils.fixCompoundDrawableTintOnAndroid6(text);
 			text.setCompoundDrawableTintList(text.getTextColors());
+			boostingTimestamp.setText(UiUtils.formatRelativeTimestamp(context, item.status.createdAt));
 		}
 
 		@Override
 		public void onBind(ReblogOrReplyLineStatusDisplayItem item){
 			bindLine(item, text);
+			boostingTimestamp.setVisibility(item.status.reblog == null ? View.GONE : View.VISIBLE);
+			timeSeparator.setVisibility(item.status.reblog == null ? View.GONE : View.VISIBLE);
 			if (item.extra != null) bindLine(item.extra, extraText);
 			extraText.setVisibility(item.extra == null ? View.GONE : View.VISIBLE);
 			separator.setVisibility(item.extra == null ? View.GONE : View.VISIBLE);

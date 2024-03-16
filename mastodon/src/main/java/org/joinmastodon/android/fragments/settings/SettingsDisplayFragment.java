@@ -47,7 +47,7 @@ public class SettingsDisplayFragment extends BaseSettingsFragment<Void>{
 	private CheckableListItem<Void> pronounsInUserListingsItem, pronounsInTimelinesItem, pronounsInThreadsItem;
 
 	// MOSHIDON
-	private  CheckableListItem<Void> enableDoubleTapToSwipeItem, relocatePublishButtonItem, showPostDividersItem, enableDoubleTapToSearchItem, showMediaPreviewItem;
+	private  CheckableListItem<Void> enableDoubleTapToSwipeItem, relocatePublishButtonItem, showPostDividersItem, enableDoubleTapToSearchItem, showMediaPreviewItem, showReplyBar;
 
 	private AccountLocalPreferences lp;
 
@@ -85,6 +85,7 @@ public class SettingsDisplayFragment extends BaseSettingsFragment<Void>{
 				showPostDividersItem=new CheckableListItem<>(R.string.mo_enable_dividers, 0, CheckableListItem.Style.SWITCH, GlobalUserPreferences.showDividers, R.drawable.ic_fluent_timeline_24_regular, i->toggleCheckableItem(showPostDividersItem)),
 				disablePillItem=new CheckableListItem<>(R.string.sk_disable_pill_shaped_active_indicator, 0, CheckableListItem.Style.SWITCH, GlobalUserPreferences.disableM3PillActiveIndicator, R.drawable.ic_fluent_pill_24_regular, i->toggleCheckableItem(disablePillItem)),
 				showNavigationLabelsItem=new CheckableListItem<>(R.string.sk_settings_show_labels_in_navigation_bar, 0, CheckableListItem.Style.SWITCH, GlobalUserPreferences.showNavigationLabels, R.drawable.ic_fluent_tag_24_regular, i->toggleCheckableItem(showNavigationLabelsItem), true),
+				showReplyBar=new CheckableListItem<>(R.string.mo_show_reply_bar, 0, CheckableListItem.Style.SWITCH, lp.showReplyBar, R.drawable.ic_fluent_tag_24_regular, i->toggleCheckableItem(showReplyBar)),
 				pronounsInTimelinesItem=new CheckableListItem<>(R.string.sk_settings_display_pronouns_in_timelines, 0, CheckableListItem.Style.CHECKBOX, GlobalUserPreferences.displayPronounsInTimelines, 0, i->toggleCheckableItem(pronounsInTimelinesItem)),
 				pronounsInThreadsItem=new CheckableListItem<>(R.string.sk_settings_display_pronouns_in_threads, 0, CheckableListItem.Style.CHECKBOX, GlobalUserPreferences.displayPronounsInThreads, 0, i->toggleCheckableItem(pronounsInThreadsItem)),
 				pronounsInUserListingsItem=new CheckableListItem<>(R.string.sk_settings_display_pronouns_in_user_listings, 0, CheckableListItem.Style.CHECKBOX, GlobalUserPreferences.displayPronounsInUserListings, 0, i->toggleCheckableItem(pronounsInUserListingsItem))
@@ -119,6 +120,7 @@ public class SettingsDisplayFragment extends BaseSettingsFragment<Void>{
 		lp.hideSensitiveMedia=hideSensitiveMediaItem.checked;
 		lp.showInteractionCounts=interactionCountsItem.checked;
 		lp.customEmojiInNames=emojiInNamesItem.checked;
+		lp.showReplyBar=showReplyBar.checked;
 		lp.save();
 		GlobalUserPreferences.toolbarMarquee=marqueeItem.checked;
 		GlobalUserPreferences.relocatePublishButton=relocatePublishButtonItem.checked;

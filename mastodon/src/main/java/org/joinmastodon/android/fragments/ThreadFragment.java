@@ -23,6 +23,7 @@ import org.joinmastodon.android.GlobalUserPreferences.AutoRevealMode;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.statuses.GetStatusByID;
 import org.joinmastodon.android.api.requests.statuses.GetStatusContext;
+import org.joinmastodon.android.api.session.AccountLocalPreferences;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.events.StatusCountersUpdatedEvent;
 import org.joinmastodon.android.events.StatusMuteChangedEvent;
@@ -436,6 +437,7 @@ public class ThreadFragment extends StatusListFragment implements ProvidesAssist
 				maybeApplyMainStatus();
 			}
 		});
+		replyContainer.setVisibility(getLocalPrefs().showReplyBar ? View.VISIBLE : View.GONE);
 	}
 
 	protected void onStatusCreated(Status status){

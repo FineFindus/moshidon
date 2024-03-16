@@ -14,15 +14,11 @@ import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.model.ContentType;
 import org.joinmastodon.android.model.Emoji;
-import org.joinmastodon.android.model.Emoji;
 import org.joinmastodon.android.model.PushSubscription;
 import org.joinmastodon.android.model.TimelineDefinition;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class AccountLocalPreferences{
 	private final SharedPreferences prefs;
@@ -50,7 +46,6 @@ public class AccountLocalPreferences{
 	public ShowEmojiReactions showEmojiReactions;
 	public ColorPreference color;
 	public ArrayList<Emoji> recentCustomEmoji;
-	public boolean preReplySheet;
 
 	private final static Type recentLanguagesType=new TypeToken<ArrayList<String>>() {}.getType();
 	private final static Type timelinesType=new TypeToken<ArrayList<TimelineDefinition>>() {}.getType();
@@ -61,6 +56,7 @@ public class AccountLocalPreferences{
 //	public Map<String, Integer> recentEmojis;
 	private final static Type notificationFiltersType = new TypeToken<PushSubscription.Alerts>() {}.getType();
 	public PushSubscription.Alerts notificationFilters;
+	public boolean showReplyBar;
 
 	public AccountLocalPreferences(SharedPreferences prefs, AccountSession session){
 		this.prefs=prefs;
@@ -92,6 +88,7 @@ public class AccountLocalPreferences{
 		// MOSHIDON
 //		recentEmojis=fromJson(prefs.getString("recentEmojis", "{}"), recentEmojisType, new HashMap<>());
 		notificationFilters=fromJson(prefs.getString("notificationFilters", gson.toJson(PushSubscription.Alerts.ofAll())), notificationFiltersType, PushSubscription.Alerts.ofAll());
+		showReplyBar=prefs.getBoolean("showReplyBar", true);
 	}
 
 	public long getNotificationsPauseEndTime(){
@@ -138,6 +135,7 @@ public class AccountLocalPreferences{
 				// MOSHIDON
 //				.putString("recentEmojis", gson.toJson(recentEmojis))
 				.putString("notificationFilters", gson.toJson(notificationFilters))
+				.putBoolean("showReplyBar", showReplyBar)
 				.apply();
 	}
 

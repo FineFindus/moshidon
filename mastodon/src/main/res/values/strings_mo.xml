@@ -120,4 +120,5 @@
 	<string name="mo_blocked_accounts">Blocked accounts</string>
 <!--	<string name="mo_blocks">Blocks</string>-->
 	<string name="mo_mute_notifications">Hide notifications from this user?</string>
+	<string name="mo_timeline_discover_posts">Trending Posts</string>
 </resources>

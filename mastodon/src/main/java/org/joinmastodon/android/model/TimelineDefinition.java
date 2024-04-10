@@ -20,6 +20,7 @@ import org.joinmastodon.android.fragments.HomeTimelineFragment;
 import org.joinmastodon.android.fragments.ListTimelineFragment;
 import org.joinmastodon.android.fragments.NotificationsListFragment;
 import org.joinmastodon.android.fragments.discover.BubbleTimelineFragment;
+import org.joinmastodon.android.fragments.discover.DiscoverPostsFragment;
 import org.joinmastodon.android.fragments.discover.FederatedTimelineFragment;
 import org.joinmastodon.android.fragments.discover.LocalTimelineFragment;
 
@@ -150,6 +151,7 @@ public class TimelineDefinition {
             case BUBBLE -> ctx.getString(R.string.sk_timeline_bubble);
 			case BOOKMARKS -> ctx.getString(R.string.bookmarks);
 			case FAVORITES -> ctx.getString(R.string.your_favorites);
+			case DISCOVER_POSTS -> ctx.getString(R.string.mo_timeline_discover_posts);
             case CUSTOM_LOCAL_TIMELINE -> domain;
         };
     }
@@ -166,6 +168,7 @@ public class TimelineDefinition {
             case BUBBLE -> Icon.BUBBLE;
 			case BOOKMARKS -> Icon.BOOKMARKS;
 			case FAVORITES -> Icon.FAVORITES;
+			case DISCOVER_POSTS -> Icon.TRENDING;
         };
     }
 
@@ -181,6 +184,7 @@ public class TimelineDefinition {
             case CUSTOM_LOCAL_TIMELINE -> new CustomLocalTimelineFragment();
 			case BOOKMARKS -> new BookmarkedStatusListFragment();
 			case FAVORITES -> new FavoritedStatusListFragment();
+			case DISCOVER_POSTS -> new DiscoverPostsFragment();
         };
     }
 
@@ -263,7 +267,8 @@ public class TimelineDefinition {
 
 		// not really timelines, but some people want it, so,,
 		BOOKMARKS,
-		FAVORITES
+		FAVORITES,
+		DISCOVER_POSTS,
 	}
 
     public enum Icon {
@@ -347,7 +352,8 @@ public class TimelineDefinition {
         CUSTOM_LOCAL_TIMELINE(R.drawable.ic_fluent_people_community_24_regular, R.string.sk_timeline_local, true),
         BUBBLE(R.drawable.ic_fluent_circle_24_regular, R.string.sk_timeline_bubble, true),
 		BOOKMARKS(R.drawable.ic_fluent_bookmark_multiple_24_regular, R.string.bookmarks, true),
-		FAVORITES(R.drawable.ic_fluent_star_24_regular, R.string.your_favorites, true);
+		FAVORITES(R.drawable.ic_fluent_star_24_regular, R.string.your_favorites, true),
+		TRENDING(R.drawable.ic_fluent_arrow_trending_24_filled, R.string.mo_timeline_discover_posts, true);
 
         public final int iconRes, nameRes;
         public final boolean hidden;
@@ -368,6 +374,7 @@ public class TimelineDefinition {
     public static final TimelineDefinition FEDERATED_TIMELINE = new TimelineDefinition(TimelineType.FEDERATED);
     public static final TimelineDefinition POSTS_TIMELINE = new TimelineDefinition(TimelineType.POST_NOTIFICATIONS);
 	public static final TimelineDefinition BOOKMARKS_TIMELINE = new TimelineDefinition(TimelineType.BOOKMARKS);
+	public static final TimelineDefinition DISCOVER_POSTS_TIMELINE = new TimelineDefinition(TimelineType.DISCOVER_POSTS);
 	public static final TimelineDefinition FAVORITES_TIMELINE = new TimelineDefinition(TimelineType.FAVORITES);
     public static final TimelineDefinition BUBBLE_TIMELINE = new TimelineDefinition(TimelineType.BUBBLE) {
         @Override
@@ -415,6 +422,7 @@ public class TimelineDefinition {
             POSTS_TIMELINE,
             BUBBLE_TIMELINE,
 			BOOKMARKS_TIMELINE,
-			FAVORITES_TIMELINE
+			FAVORITES_TIMELINE,
+			DISCOVER_POSTS_TIMELINE
     );
 }

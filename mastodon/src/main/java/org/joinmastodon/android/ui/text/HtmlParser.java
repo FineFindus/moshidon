@@ -69,6 +69,9 @@ public class HtmlParser{
 	public static final Pattern INVITE_LINK_PATTERN=Pattern.compile("^https://"+Regex.URL_VALID_DOMAIN+"/invite/[a-z\\d]+$", Pattern.CASE_INSENSITIVE);
 	private static Pattern EMOJI_CODE_PATTERN=Pattern.compile(":([\\w]+):");
 
+	// LaTeX in the form of "\(sqrt(N)\)" for inline and "\[\sqrt(N)\]" for display blocks
+	private static Pattern LATEX_PATTERN=Pattern.compile("(\\\\\\(.*?\\\\\\)|\\\\\\[(.*?)\\\\\\])+");
+
 	private HtmlParser(){}
 
 	public static SpannableStringBuilder parse(String source, List<Emoji> emojis, List<Mention> mentions, List<Hashtag> tags, String accountID){
@@ -226,7 +229,17 @@ public class HtmlParser{
 		});
 		if(!emojis.isEmpty())
 			parseCustomEmoji(ssb, emojis);
+		parseLaTeX(context, ssb);
 		return ssb;
+	}
+
+	private static void parseLaTeX(Context context, SpannableStringBuilder ssb){
+		//default text color for status display text
+		int textColor=UiUtils.getThemeColor(context, R.attr.colorM3OnSurfaceVariant);
+		Matcher matcher=LATEX_PATTERN.matcher(ssb);
+		while(matcher.find()){
+			ssb.setSpan(new LaTeXSpan(matcher.group(1), textColor), matcher.start(), matcher.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		}
 	}
 
 	public static void parseCustomEmoji(SpannableStringBuilder ssb, List<Emoji> emojis){

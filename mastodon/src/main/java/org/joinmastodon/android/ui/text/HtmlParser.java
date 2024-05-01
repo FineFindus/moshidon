@@ -236,6 +236,7 @@ public class HtmlParser{
 	private static void parseLaTeX(Context context, SpannableStringBuilder ssb){
 		//default text color for status display text
 		int textColor=UiUtils.getThemeColor(context, R.attr.colorM3OnSurfaceVariant);
+		//TODO: add support for display blocks
 		Matcher matcher=LATEX_PATTERN.matcher(ssb);
 		while(matcher.find()){
 			ssb.setSpan(new LaTeXSpan(matcher.group(1), textColor), matcher.start(), matcher.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

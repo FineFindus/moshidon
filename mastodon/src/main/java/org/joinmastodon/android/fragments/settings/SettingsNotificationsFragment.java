@@ -57,7 +57,7 @@ public class SettingsNotificationsFragment extends BaseSettingsFragment<Void>{
 
 	// MEGALODON
 	private boolean useUnifiedPush = false;
-	private CheckableListItem<Void> uniformIconItem, deleteItem, onlyLatestItem, unifiedPushItem;
+	private CheckableListItem<Void> deleteItem, onlyLatestItem, unifiedPushItem;
 	private CheckableListItem<Void> postsItem, updateItem;
 
 	// MOSHIDON
@@ -86,7 +86,6 @@ public class SettingsNotificationsFragment extends BaseSettingsFragment<Void>{
 				updateItem=new CheckableListItem<>(R.string.sk_notification_type_update, 0, CheckableListItem.Style.CHECKBOX, pushSubscription.alerts.update, R.drawable.ic_fluent_history_24_regular, i->toggleCheckableItem(updateItem)),
 				postsItem=new CheckableListItem<>(R.string.sk_notification_type_posts, 0, CheckableListItem.Style.CHECKBOX, pushSubscription.alerts.status, R.drawable.ic_fluent_chat_24_regular, i->toggleCheckableItem(postsItem), true),
 
-				uniformIconItem=new CheckableListItem<>(R.string.sk_settings_uniform_icon_for_notifications, R.string.mo_setting_uniform_summary, CheckableListItem.Style.SWITCH, GlobalUserPreferences.uniformNotificationIcon, R.drawable.ic_ntf_logo, i->toggleCheckableItem(uniformIconItem)),
 				swapBookmarkWithReblogItem=new CheckableListItem<>(R.string.mo_swap_bookmark_with_reblog, R.string.mo_swap_bookmark_with_reblog_summary, CheckableListItem.Style.SWITCH, GlobalUserPreferences.swapBookmarkWithBoostAction, R.drawable.ic_boost, i->toggleCheckableItem(swapBookmarkWithReblogItem)),
 				deleteItem=new CheckableListItem<>(R.string.sk_settings_enable_delete_notifications, 0, CheckableListItem.Style.SWITCH, GlobalUserPreferences.enableDeleteNotifications, R.drawable.ic_fluent_mail_inbox_dismiss_24_regular, i->toggleCheckableItem(deleteItem)),
 				onlyLatestItem=new CheckableListItem<>(R.string.sk_settings_single_notification, 0, CheckableListItem.Style.SWITCH, lp.keepOnlyLatestNotification, R.drawable.ic_fluent_convert_range_24_regular, i->toggleCheckableItem(onlyLatestItem), true),
@@ -118,7 +117,6 @@ public class SettingsNotificationsFragment extends BaseSettingsFragment<Void>{
 				|| favoritesItem.checked!=ps.alerts.favourite
 				|| followersItem.checked!=ps.alerts.follow
 				|| pollsItem.checked!=ps.alerts.poll;
-		GlobalUserPreferences.uniformNotificationIcon=uniformIconItem.checked;
 		GlobalUserPreferences.enableDeleteNotifications=deleteItem.checked;
 		GlobalUserPreferences.swapBookmarkWithBoostAction=swapBookmarkWithReblogItem.checked;
 		GlobalUserPreferences.save();

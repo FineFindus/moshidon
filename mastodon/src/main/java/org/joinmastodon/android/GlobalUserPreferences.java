@@ -47,7 +47,6 @@ public class GlobalUserPreferences{
 	public static boolean disableSwipe;
 	public static boolean enableDeleteNotifications;
 	public static boolean translateButtonOpenedOnly;
-	public static boolean uniformNotificationIcon;
 	public static boolean reduceMotion;
 	public static boolean showAltIndicator;
 	public static boolean showNoAltIndicator;
@@ -125,7 +124,6 @@ public class GlobalUserPreferences{
 		disableSwipe=prefs.getBoolean("disableSwipe", false);
 		enableDeleteNotifications=prefs.getBoolean("enableDeleteNotifications", false);
 		translateButtonOpenedOnly=prefs.getBoolean("translateButtonOpenedOnly", false);
-		uniformNotificationIcon=prefs.getBoolean("uniformNotificationIcon", false);
 		reduceMotion=prefs.getBoolean("reduceMotion", false);
 		showAltIndicator=prefs.getBoolean("showAltIndicator", true);
 		showNoAltIndicator=prefs.getBoolean("showNoAltIndicator", true);
@@ -148,7 +146,6 @@ public class GlobalUserPreferences{
 		likeIcon=prefs.getBoolean("likeIcon", false);
 
 		// MOSHIDON
-		uniformNotificationIcon=prefs.getBoolean("uniformNotificationIcon", false);
 		showDividers =prefs.getBoolean("showDividers", false);
 		relocatePublishButton=prefs.getBoolean("relocatePublishButton", true);
 		defaultToUnlistedReplies=prefs.getBoolean("defaultToUnlistedReplies", false);
@@ -200,7 +197,6 @@ public class GlobalUserPreferences{
 				.putBoolean("disableSwipe", disableSwipe)
 				.putBoolean("enableDeleteNotifications", enableDeleteNotifications)
 				.putBoolean("translateButtonOpenedOnly", translateButtonOpenedOnly)
-				.putBoolean("uniformNotificationIcon", uniformNotificationIcon)
 				.putBoolean("reduceMotion", reduceMotion)
 				.putBoolean("showAltIndicator", showAltIndicator)
 				.putBoolean("showNoAltIndicator", showNoAltIndicator)

@@ -237,21 +237,8 @@ public class PushNotificationReceiver extends BroadcastReceiver{
 			builder.setSubText(accountName);
 		}
 
-		int id;
-		if(session.getLocalPreferences().keepOnlyLatestNotification){
-			if(notificationIdsForAccounts.containsKey(accountID)){
-				// we overwrite the existing notification
-				id=notificationIdsForAccounts.get(accountID);
-			}else{
-				// there's no existing notification, so we increment
-				id=notificationId++;
-				// and store the notification id for this account
-				notificationIdsForAccounts.put(accountID, id);
-			}
-		}else{
-			// we don't want to overwrite anything, therefore incrementing
-			id=notificationId++;
-		}
+		// increment id, as to not overwrite the previous notification
+		int id=notificationId++;
 
 		if (notification != null){
 			switch (pn.notificationType){

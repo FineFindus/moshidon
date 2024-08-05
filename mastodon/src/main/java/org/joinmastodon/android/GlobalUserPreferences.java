@@ -320,7 +320,6 @@ public class GlobalUserPreferences{
 			localPrefs.localOnlySupported=accountsWithLocalOnlySupport.contains(accountID);
 			localPrefs.glitchInstance=accountsInGlitchMode.contains(accountID);
 			localPrefs.publishButtonText=prefs.getString("publishButtonText", null);
-			localPrefs.keepOnlyLatestNotification=prefs.getBoolean("keepOnlyLatestNotification", false);
 			localPrefs.showReplies=prefs.getBoolean("showReplies", true);
 			localPrefs.showBoosts=prefs.getBoolean("showBoosts", true);
 

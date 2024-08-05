@@ -45,7 +45,6 @@ public class AccountLocalPreferences{
 	public boolean glitchInstance;
 	public String publishButtonText;
 	public String timelineReplyVisibility; // akkoma-only
-	public boolean keepOnlyLatestNotification;
 	public boolean emojiReactionsEnabled;
 	public ShowEmojiReactions showEmojiReactions;
 	public ColorPreference color;
@@ -83,7 +82,6 @@ public class AccountLocalPreferences{
 		glitchInstance=prefs.getBoolean("glitchInstance", false);
 		publishButtonText=prefs.getString("publishButtonText", null);
 		timelineReplyVisibility=prefs.getString("timelineReplyVisibility", null);
-		keepOnlyLatestNotification=prefs.getBoolean("keepOnlyLatestNotification", false);
 		emojiReactionsEnabled=prefs.getBoolean("emojiReactionsEnabled", session.getInstance().isPresent() && session.getInstance().get().isAkkoma());
 		showEmojiReactions=ShowEmojiReactions.valueOf(prefs.getString("showEmojiReactions", ShowEmojiReactions.HIDE_EMPTY.name()));
 		color=prefs.contains("color") ? ColorPreference.valueOf(prefs.getString("color", null)) : null;
@@ -129,7 +127,6 @@ public class AccountLocalPreferences{
 				.putBoolean("glitchInstance", glitchInstance)
 				.putString("publishButtonText", publishButtonText)
 				.putString("timelineReplyVisibility", timelineReplyVisibility)
-				.putBoolean("keepOnlyLatestNotification", keepOnlyLatestNotification)
 				.putBoolean("emojiReactionsEnabled", emojiReactionsEnabled)
 				.putString("showEmojiReactions", showEmojiReactions.name())
 				.putString("color", color!=null ? color.name() : null)

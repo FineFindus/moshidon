@@ -57,7 +57,7 @@ public class SettingsNotificationsFragment extends BaseSettingsFragment<Void>{
 
 	// MEGALODON
 	private boolean useUnifiedPush = false;
-	private CheckableListItem<Void> deleteItem, onlyLatestItem, unifiedPushItem;
+	private CheckableListItem<Void> deleteItem, unifiedPushItem;
 	private CheckableListItem<Void> postsItem, updateItem;
 
 	private AccountLocalPreferences lp;
@@ -84,7 +84,6 @@ public class SettingsNotificationsFragment extends BaseSettingsFragment<Void>{
 				postsItem=new CheckableListItem<>(R.string.sk_notification_type_posts, 0, CheckableListItem.Style.CHECKBOX, pushSubscription.alerts.status, R.drawable.ic_fluent_chat_24_regular, i->toggleCheckableItem(postsItem), true),
 
 				deleteItem=new CheckableListItem<>(R.string.sk_settings_enable_delete_notifications, 0, CheckableListItem.Style.SWITCH, GlobalUserPreferences.enableDeleteNotifications, R.drawable.ic_fluent_mail_inbox_dismiss_24_regular, i->toggleCheckableItem(deleteItem)),
-				onlyLatestItem=new CheckableListItem<>(R.string.sk_settings_single_notification, 0, CheckableListItem.Style.SWITCH, lp.keepOnlyLatestNotification, R.drawable.ic_fluent_convert_range_24_regular, i->toggleCheckableItem(onlyLatestItem), true),
 				unifiedPushItem=new CheckableListItem<>(R.string.sk_settings_unifiedpush, 0, CheckableListItem.Style.SWITCH, useUnifiedPush, R.drawable.ic_fluent_alert_arrow_up_24_regular, i->onUnifiedPushClick(), true)
 		));
 
@@ -115,7 +114,6 @@ public class SettingsNotificationsFragment extends BaseSettingsFragment<Void>{
 				|| pollsItem.checked!=ps.alerts.poll;
 		GlobalUserPreferences.enableDeleteNotifications=deleteItem.checked;
 		GlobalUserPreferences.save();
-		lp.keepOnlyLatestNotification=onlyLatestItem.checked;
 		lp.save();
 		if(needUpdateNotificationSettings && PushSubscriptionManager.arePushNotificationsAvailable()){
 			ps.alerts.mention=mentionsItem.checked;

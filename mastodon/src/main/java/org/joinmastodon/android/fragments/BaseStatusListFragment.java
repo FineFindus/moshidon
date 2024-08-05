@@ -429,7 +429,7 @@ public abstract class BaseStatusListFragment<T extends DisplayItemsParent> exten
 					currentPhotoViewer.offsetView(-dx, -dy);
 
 				View fab = getFab();
-				if (fab!=null && GlobalUserPreferences.autoHideFab && dy != UiUtils.SCROLL_TO_TOP_DELTA) {
+				if (fab!=null && dy != UiUtils.SCROLL_TO_TOP_DELTA) {
 					if (dy > 0 && fab.getVisibility() == View.VISIBLE) {
 						hideFab();
 					} else if (dy < 0 && fab.getVisibility() != View.VISIBLE) {

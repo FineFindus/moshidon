@@ -54,7 +54,6 @@ public class GlobalUserPreferences{
 	public static PrefixRepliesMode prefixReplies;
 	public static boolean collapseLongPosts;
 	public static boolean spectatorMode;
-	public static boolean autoHideFab;
 	public static boolean allowRemoteLoading;
 	public static AutoRevealMode autoRevealEqualSpoilers;
 	public static boolean disableM3PillActiveIndicator;
@@ -130,7 +129,6 @@ public class GlobalUserPreferences{
 		prefixReplies=PrefixRepliesMode.valueOf(prefs.getString("prefixReplies", PrefixRepliesMode.NEVER.name()));
 		collapseLongPosts=prefs.getBoolean("collapseLongPosts", true);
 		spectatorMode=prefs.getBoolean("spectatorMode", false);
-		autoHideFab=prefs.getBoolean("autoHideFab", true);
 		allowRemoteLoading=prefs.getBoolean("allowRemoteLoading", true);
 		autoRevealEqualSpoilers=AutoRevealMode.valueOf(prefs.getString("autoRevealEqualSpoilers", AutoRevealMode.THREADS.name()));
 		disableM3PillActiveIndicator=prefs.getBoolean("disableM3PillActiveIndicator", false);
@@ -202,7 +200,6 @@ public class GlobalUserPreferences{
 				.putString("prefixReplies", prefixReplies.name())
 				.putBoolean("collapseLongPosts", collapseLongPosts)
 				.putBoolean("spectatorMode", spectatorMode)
-				.putBoolean("autoHideFab", autoHideFab)
 				.putBoolean("allowRemoteLoading", allowRemoteLoading)
 				.putString("autoRevealEqualSpoilers", autoRevealEqualSpoilers.name())
 				.putBoolean("disableM3PillActiveIndicator", disableM3PillActiveIndicator)

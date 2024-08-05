@@ -42,7 +42,7 @@ public class SettingsDisplayFragment extends BaseSettingsFragment<Void>{
 	private CheckableListItem<Void> revealCWsItem, hideSensitiveMediaItem, interactionCountsItem, emojiInNamesItem;
 
 	// MEGALODON
-	private CheckableListItem<Void> trueBlackModeItem, marqueeItem, disableSwipeItem, reduceMotionItem, altIndicatorItem, noAltIndicatorItem, collapsePostsItem, spectatorModeItem, hideFabItem, translateOpenedItem, disablePillItem, showNavigationLabelsItem, likeIconItem, underlinedLinksItem;
+	private CheckableListItem<Void> trueBlackModeItem, marqueeItem, disableSwipeItem, reduceMotionItem, altIndicatorItem, noAltIndicatorItem, collapsePostsItem, spectatorModeItem, translateOpenedItem, disablePillItem, showNavigationLabelsItem, likeIconItem, underlinedLinksItem;
 	private ListItem<Void> colorItem, publishTextItem, autoRevealCWsItem;
 	private CheckableListItem<Void> pronounsInUserListingsItem, pronounsInTimelinesItem, pronounsInThreadsItem;
 
@@ -78,7 +78,6 @@ public class SettingsDisplayFragment extends BaseSettingsFragment<Void>{
 				noAltIndicatorItem=new CheckableListItem<>(R.string.sk_settings_show_no_alt_indicator, 0, CheckableListItem.Style.SWITCH, GlobalUserPreferences.showNoAltIndicator, R.drawable.ic_fluent_important_24_regular, i->toggleCheckableItem(noAltIndicatorItem)),
 				collapsePostsItem=new CheckableListItem<>(R.string.sk_settings_collapse_long_posts, 0, CheckableListItem.Style.SWITCH, GlobalUserPreferences.collapseLongPosts, R.drawable.ic_fluent_chevron_down_24_regular, i->toggleCheckableItem(collapsePostsItem)),
 				spectatorModeItem=new CheckableListItem<>(R.string.sk_settings_hide_interaction, 0, CheckableListItem.Style.SWITCH, GlobalUserPreferences.spectatorMode, R.drawable.ic_fluent_star_off_24_regular, i->toggleCheckableItem(spectatorModeItem)),
-				hideFabItem=new CheckableListItem<>(R.string.sk_settings_hide_fab, 0, CheckableListItem.Style.SWITCH, GlobalUserPreferences.autoHideFab, R.drawable.ic_fluent_edit_24_regular, i->toggleCheckableItem(hideFabItem)),
 				translateOpenedItem=new CheckableListItem<>(R.string.sk_settings_translate_only_opened, 0, CheckableListItem.Style.SWITCH, GlobalUserPreferences.translateButtonOpenedOnly, R.drawable.ic_fluent_translate_24_regular, i->toggleCheckableItem(translateOpenedItem)),
 				likeIconItem=new CheckableListItem<>(R.string.sk_settings_like_icon, 0, CheckableListItem.Style.SWITCH, GlobalUserPreferences.likeIcon, R.drawable.ic_fluent_heart_24_regular, i->toggleCheckableItem(likeIconItem)),
 				underlinedLinksItem=new CheckableListItem<>(R.string.sk_settings_underlined_links, 0, CheckableListItem.Style.SWITCH, GlobalUserPreferences.underlinedLinks, R.drawable.ic_fluent_text_underline_24_regular, i->toggleCheckableItem(underlinedLinksItem)),
@@ -130,7 +129,6 @@ public class SettingsDisplayFragment extends BaseSettingsFragment<Void>{
 		GlobalUserPreferences.showNoAltIndicator=noAltIndicatorItem.checked;
 		GlobalUserPreferences.collapseLongPosts=collapsePostsItem.checked;
 		GlobalUserPreferences.spectatorMode=spectatorModeItem.checked;
-		GlobalUserPreferences.autoHideFab=hideFabItem.checked;
 		GlobalUserPreferences.translateButtonOpenedOnly=translateOpenedItem.checked;
 		GlobalUserPreferences.likeIcon=likeIconItem.checked;
 		GlobalUserPreferences.underlinedLinks=underlinedLinksItem.checked;

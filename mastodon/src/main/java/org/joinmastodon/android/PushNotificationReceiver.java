@@ -45,6 +45,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -259,14 +260,10 @@ public class PushNotificationReceiver extends BroadcastReceiver{
 						builder.addAction(buildReplyAction(context, id, accountID, notification));
 					}
 					builder.addAction(buildNotificationAction(context, id, accountID, notification,  context.getString(R.string.button_favorite), NotificationAction.FAVORITE));
-					if(GlobalUserPreferences.swapBookmarkWithBoostAction){
-						if(notification.status.visibility != StatusPrivacy.DIRECT) {
-							builder.addAction(buildNotificationAction(context, id, accountID, notification,  context.getString(R.string.button_reblog), NotificationAction.BOOST));
-						}else{
-							// This is just so there is a bookmark action if you cannot reblog the toot
-							builder.addAction(buildNotificationAction(context, id, accountID, notification, context.getString(R.string.add_bookmark), NotificationAction.BOOKMARK));
-						}
-					} else {
+					if(notification.status.visibility.isReblogPermitted(notification.status.account.id.equals(accountID))) {
+						builder.addAction(buildNotificationAction(context, id, accountID, notification,  context.getString(R.string.button_reblog), NotificationAction.BOOST));
+					}else{
+						// private statuses cannot be boosted, display a bookmark action instead
 						builder.addAction(buildNotificationAction(context, id, accountID, notification, context.getString(R.string.add_bookmark), NotificationAction.BOOKMARK));
 					}
 				}
@@ -274,9 +271,7 @@ public class PushNotificationReceiver extends BroadcastReceiver{
 					if(notification.status.reblogged)
 						builder.addAction(buildNotificationAction(context, id, accountID, notification,  context.getString(R.string.sk_undo_reblog), NotificationAction.UNBOOST));
 				}
-				case FOLLOW -> {
-					builder.addAction(buildNotificationAction(context, id, accountID, notification, context.getString(R.string.follow_back), NotificationAction.FOLLOW_BACK));
-				}
+				case FOLLOW -> builder.addAction(buildNotificationAction(context, id, accountID, notification, context.getString(R.string.follow_back), NotificationAction.FOLLOW_BACK));
 			}
 		}
 
